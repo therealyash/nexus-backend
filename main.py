@@ -12,9 +12,14 @@ from app.routers import auth, users, coins, weather
 
 app = FastAPI(title="Nexus API")
 
+ALLOWED_ORIGINS = [
+    "https://nexus-frontend-pi-lac.vercel.app",
+    "http://localhost:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_methods=["*"],
     allow_headers=["*"],
 )

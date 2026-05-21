@@ -1,25 +1,19 @@
-"""
-Nexus Backend — entry point
-Run with: uvicorn main:app --reload
-"""
-
 import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.routers import auth, users, coins, weather
+from app.routes import auth, coins, users, weather
 
 app = FastAPI(title="Nexus API")
 
-ALLOWED_ORIGINS = [
-    "https://nexus-frontend-pi-lac.vercel.app",
-    "http://localhost:3000",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=[
+        "https://nexus-frontend-pi-lac.vercel.app",
+        "http://localhost:3000",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )

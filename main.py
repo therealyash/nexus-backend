@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()  # Must be before any app imports so os.getenv() sees the values
+
 import os
 
 from fastapi import FastAPI

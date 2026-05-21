@@ -19,16 +19,6 @@ async def login(body: LoginRequest, ctrl: AuthController = Depends(get_auth_cont
     return await ctrl.login(body)
 
 
-@router.get("/google")
-def google_login(ctrl: AuthController = Depends(get_auth_controller)):
-    return ctrl.get_google_url()
-
-
-@router.get("/google/callback")
-async def google_callback(code: str, ctrl: AuthController = Depends(get_auth_controller)):
-    return await ctrl.google_callback(code)
-
-
 @router.post("/logout")
 def logout(
     authorization: Optional[str] = Header(None),

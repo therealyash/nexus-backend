@@ -1,16 +1,16 @@
+import os
 from typing import Optional
 
 import bcrypt
 import cloudinary
 import cloudinary.uploader
 
-from app.config import CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_CLOUD_NAME
 from app.repositories.base import IUserRepository
 
 cloudinary.config(
-    cloud_name=CLOUDINARY_CLOUD_NAME,
-    api_key=CLOUDINARY_API_KEY,
-    api_secret=CLOUDINARY_API_SECRET,
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME", ""),
+    api_key=os.getenv("CLOUDINARY_API_KEY", ""),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET", ""),
 )
 
 _SAFE_FIELDS = frozenset({"name", "email", "bio", "phone", "photo"})

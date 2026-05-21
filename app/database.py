@@ -1,7 +1,8 @@
-from motor.motor_asyncio import AsyncIOMotorClient
-from app.config import MONGODB_URL
+import os
 
-mongo_client = AsyncIOMotorClient(MONGODB_URL)
+from motor.motor_asyncio import AsyncIOMotorClient
+
+mongo_client = AsyncIOMotorClient(os.getenv("MONGODB_URL"))
 db = mongo_client.nexus
 users_col = db.users
 

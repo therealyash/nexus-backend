@@ -24,16 +24,6 @@ class AuthController:
         except ValueError as e:
             raise HTTPException(400, str(e))
 
-    def get_google_url(self) -> dict:
-        return {"google_auth_url": self._svc.get_google_auth_url()}
-
-    async def google_callback(self, code: str) -> dict:
-        try:
-            result = await self._svc.google_callback(code)
-            return {"access_token": result["token"], "token_type": "bearer", "name": result["name"]}
-        except Exception:
-            raise HTTPException(502, "Google OAuth failed")
-
     def logout(self, authorization: Optional[str]) -> dict:
         if not authorization or not authorization.startswith("Bearer "):
             raise HTTPException(401, "No token provided")
